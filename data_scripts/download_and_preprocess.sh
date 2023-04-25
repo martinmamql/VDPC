@@ -6,13 +6,13 @@ mkdir -p ../datasets
 if [ "$1" = "imagenet32" ]; then
   if [ ! -f ../dataset_dumps/Imagenet32_train_npz.zip ]; then
     echo "downloading imagenet32 training data"
-    wget https://image-net.org/data/downsample/Imagenet32_train_npz.zip -P ../dataset_dumps
+    wget https://image-net.org/data/downsample/Imagenet32_train_npz.zip --no-check-certificate -P ../dataset_dumps 
 
   fi
 
   if [ ! -f ../dataset_dumps/Imagenet32_val_npz.zip ]; then
     echo "downloading imagenet32 validation data"
-    wget https://image-net.org/data/downsample/Imagenet32_val_npz.zip -P ../dataset_dumps
+    wget https://image-net.org/data/downsample/Imagenet32_val_npz.zip --no-check-certificate -P ../dataset_dumps
 
   fi
 
@@ -27,19 +27,19 @@ if [ "$1" = "imagenet32" ]; then
 elif [ "$1" = "imagenet64" ]; then
   if [ ! -f ../dataset_dumps/Imagenet64_train_part1_npz.zip ]; then
     echo "downloading imagenet64 training part 1 data"
-    wget https://image-net.org/data/downsample/Imagenet64_train_part1_npz.zip -P ../dataset_dumps
+    wget https://image-net.org/data/downsample/Imagenet64_train_part1_npz.zip --no-check-certificate -P ../dataset_dumps
 
   fi
 
   if [ ! -f ../dataset_dumps/Imagenet64_train_part2_npz.zip ]; then
     echo "downloading imagenet64 training part 2 data"
-    wget https://image-net.org/data/downsample/Imagenet64_train_part2_npz.zip -P ../dataset_dumps
+    wget https://image-net.org/data/downsample/Imagenet64_train_part2_npz.zip --no-check-certificate -P ../dataset_dumps
 
   fi
 
   if [ ! -f ../dataset_dumps/Imagenet64_val_npz.zip ]; then
     echo "downloading imagenet64 validation data"
-    wget https://image-net.org/data/downsample/Imagenet64_val_npz.zip -P ../dataset_dumps
+    wget https://image-net.org/data/downsample/Imagenet64_val_npz.zip --no-check-certificate -P ../dataset_dumps
 
   fi
 

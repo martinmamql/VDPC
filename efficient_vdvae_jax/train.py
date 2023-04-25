@@ -7,6 +7,7 @@ import tensorflow as tf
 
 # Prevent tensorflow from using GPUs
 tf.config.set_visible_devices([], device_type='GPU')
+print("Warning expected because tensorflow GPU is prevented (only Jax uses GPU): I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.")
 
 from hparams import HParams
 

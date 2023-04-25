@@ -2,7 +2,7 @@ import jax
 import jax.numpy as jnp
 from optax._src import base
 from optax._src import numerics
-from optax._src.transform import _update_moment, _bias_correction, ScaleByAdamState
+from optax._src.transform import update_moment, bias_correction, ScaleByAdamState
 
 
 def _update_infinite_moment(updates, moments, decay, eps):
@@ -37,10 +37,10 @@ def scale_by_adamax(
 
     def update_fn(updates, state, params=None):
         del params
-        mu = _update_moment(updates, state.mu, b1, 1)
+        mu = update_moment(updates, state.mu, b1, 1)
         nu = _update_infinite_moment(updates, state.nu, b2, eps)  # No bias correction for infinite moment
         count_inc = numerics.safe_int32_increment(state.count)
-        mu_hat = _bias_correction(mu, b1, count_inc)
+        mu_hat = bias_correction(mu, b1, count_inc)
         updates = jax.tree_map(
             lambda m, v: m / v, mu_hat, nu)
         return updates, ScaleByAdamState(count=count_inc, mu=mu, nu=nu)
