@@ -30,7 +30,7 @@ try:
     from .model.model import UniversalAutoEncoder
     from .model.optimizers import get_optimizer
     from .model.schedules import get_lr_schedule
-    from .utils.utils import create_tb_writer, assert_CUDA_and_hparams_gpus_are_equal, create_checkpoint_dir, load_checkpoint_if_exists, get_l2_mask_from_params
+    from .utils.utils import create_tb_writer, create_checkpoint_dir, load_checkpoint_if_exists, get_l2_mask_from_params
     from .data.generic_data_loader import create_generic_datasets
     from .data.cifar10_data_loader import create_cifar10_datasets
     from .data.mnist_data_loader import create_mnist_datasets
@@ -42,7 +42,7 @@ except (ImportError, ValueError):
     from model.model import UniversalAutoEncoder
     from model.optimizers import get_optimizer
     from model.schedules import get_lr_schedule
-    from utils.utils import create_tb_writer, assert_CUDA_and_hparams_gpus_are_equal, create_checkpoint_dir, load_checkpoint_if_exists, get_l2_mask_from_params
+    from utils.utils import create_tb_writer, create_checkpoint_dir, load_checkpoint_if_exists, get_l2_mask_from_params
     from data.generic_data_loader import create_generic_datasets
     from data.cifar10_data_loader import create_cifar10_datasets
     from data.mnist_data_loader import create_mnist_datasets
@@ -54,7 +54,6 @@ except (ImportError, ValueError):
 def main():
     print("Initializing...")
     # n_devices sanity check
-    assert_CUDA_and_hparams_gpus_are_equal()
 
     # Set numpy seed and create jax rng
     seed(hparams.run.seed)  # Numpy seed.
