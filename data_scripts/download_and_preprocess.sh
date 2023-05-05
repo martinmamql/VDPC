@@ -59,28 +59,22 @@ elif [ "$1" = "celeba" ]; then
   # data: https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?usp=sharing&resourcekey=0-dYn9z10tMJOBAkviAcfdyQ
   # partitions: https://drive.google.com/file/d/0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?usp=sharing&resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg
   if [ ! -f ../dataset_dumps/img_align_celeba.zip ]; then
-    mkdir -p ../dataset_dumps
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM" -O ../dataset_dumps/img_align_celeba.zip && rm -rf /tmp/cookies.txt
-
-    #echo "CelebA dataset file not found under <project_path>/dataset_dumps/!
-    #Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?usp=sharing&resourcekey=0-dYn9z10tMJOBAkviAcfdyQ \n
-    #Please make sure the file is under <project_path>/dataset_dumps/img_align_celeba.zip"
+    echo "CelebA dataset file not found under <project_path>/dataset_dumps/!
+    Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?usp=sharing&resourcekey=0-dYn9z10tMJOBAkviAcfdyQ \n
+    Please make sure the file is under <project_path>/dataset_dumps/img_align_celeba.zip"
 
   fi
 
   if [ ! -f ../dataset_dumps/list_eval_partition.txt ]; then
-    mkdir -p ../dataset_dumps
-    wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pY0NSMzRuSXJEVkk' -O ../dataset_dumps/list_eval_partition.txt
-    
-    #echo "CelebA partition file not found under <project_path>/dataset_dumps/!
-    #Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?usp=sharing&resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg \n
-    #Please make sure the file is under <project_path>/dataset_dumps/list_eval_partition.txt"
+    echo "CelebA partition file not found under <project_path>/dataset_dumps/!
+    Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?usp=sharing&resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg \n
+    Please make sure the file is under <project_path>/dataset_dumps/list_eval_partition.txt"
 
   fi
 
   echo "processing celeba"
   unzip ../dataset_dumps/img_align_celeba.zip -d ../dataset_dumps
-  CUDA_VISIBLE_DEVICES=-1 python preprocess_celeba64.py
+  CUDA_VISIBLE_DEVICES=-1 python3 preprocess_celeba64.py
 
 elif [ "$1" = "celebahq" ]; then
   # For convenience, we download the filtered dataset from this work:
@@ -96,7 +90,7 @@ elif [ "$1" = "celebahq" ]; then
   echo "processing celebahq"
   unzip ../dataset_dumps/data1024x1024.zip -d ../dataset_dumps
 
-  CUDA_VISIBLE_DEVICES=-1 python random_split.py ../dataset_dumps/data1024x1024 ../datasets/celebAHQ 3000
+  CUDA_VISIBLE_DEVICES=-1 python3 random_split.py ../dataset_dumps/data1024x1024 ../datasets/celebAHQ 3000
 
 elif [ "$1" = "ffhq" ]; then
   if [ ! -f ../dataset_dumps/images1024x1024.zip ]; then
@@ -109,7 +103,7 @@ elif [ "$1" = "ffhq" ]; then
   unzip ../dataset_dumps/images1024x1024.zip -d ../dataset_dumps
   rm ../dataset_dumps/images1024x1024/LICENSE.txt
 
-  CUDA_VISIBLE_DEVICES=-1 python random_split.py ../dataset_dumps/images1024x1024 ../datasets/ffhq 7000
+  CUDA_VISIBLE_DEVICES=-1 python3 random_split.py ../dataset_dumps/images1024x1024 ../datasets/ffhq 7000
 
 else
   echo "Argument $1 not recognized! Accepted arguments: imagenet32, imagenet64, celeba, celebahq, ffhq"

@@ -18,3 +18,4 @@ pip install --upgrade optax flax trax
 
 pip install -r requirements.txt
 
+pip install --upgrade protobuf
