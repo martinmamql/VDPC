@@ -3,8 +3,6 @@ pip install --upgrade pip
 #install hparams
 pip install --upgrade git+https://github.com/Rayhane-mamah/hparams
 
-pip install -r requirements.txt
-
 # Installs the wheel compatible with Cuda >= 11.1 and cudnn >= 8.0.5
 #pip install jax[cuda11_cudnn805] -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
@@ -17,3 +15,6 @@ pip install jax[tpu] -f https://storage.googleapis.com/jax-releases/libtpu_relea
 
 # Install JAX extensions
 pip install --upgrade optax flax trax
+
+pip install -r requirements.txt
+
