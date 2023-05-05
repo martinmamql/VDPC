@@ -59,23 +59,22 @@ elif [ "$1" = "celeba" ]; then
   # data: https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?usp=sharing&resourcekey=0-dYn9z10tMJOBAkviAcfdyQ
   # partitions: https://drive.google.com/file/d/0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?usp=sharing&resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg
   if [ ! -f ../dataset_dumps/img_align_celeba.zip ]; then
-    mkdir -p dataset_dumps
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?resourcekey=0-dYn9z10tMJOBAkviAcfdyQ' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?resourcekey=0-dYn9z10tMJOBAkviAcfdyQ" -O dataset_dumps/img_align_celeba.zip && rm -rf /tmp/cookies.txt    
+    mkdir -p ../dataset_dumps
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM" -O ../dataset_dumps/img_align_celeba.zip && rm -rf /tmp/cookies.txt
+
     #echo "CelebA dataset file not found under <project_path>/dataset_dumps/!
     #Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/view?usp=sharing&resourcekey=0-dYn9z10tMJOBAkviAcfdyQ \n
     #Please make sure the file is under <project_path>/dataset_dumps/img_align_celeba.zip"
-    exit 0
 
   fi
 
   if [ ! -f ../dataset_dumps/list_eval_partition.txt ]; then
-    mkdir -p dataset_dumps
-    wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg' -O dataset_dumps/list_eval_partition.txt
+    mkdir -p ../dataset_dumps
+    wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B7EVK8r0v71pY0NSMzRuSXJEVkk' -O ../dataset_dumps/list_eval_partition.txt
     
     #echo "CelebA partition file not found under <project_path>/dataset_dumps/!
     #Please manually download it from: https://drive.google.com/file/d/0B7EVK8r0v71pY0NSMzRuSXJEVkk/view?usp=sharing&resourcekey=0-i4TGCi_51OtQ5K9FSp4EDg \n
     #Please make sure the file is under <project_path>/dataset_dumps/list_eval_partition.txt"
-    exit 0
 
   fi
 

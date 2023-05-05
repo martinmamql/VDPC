@@ -37,7 +37,6 @@ def main():
     all_filenames = get_partitioned_filenames()
 
     for split, split_filenames in zip(splits, all_filenames):
-        print(f'Processing {split}..')
         executor = ProcessPoolExecutor(max_workers=256)
         futures = [executor.submit(partial(process_one_file, filename, split)) for filename in split_filenames]
         _ = [future.result() for future in tqdm(futures)]
